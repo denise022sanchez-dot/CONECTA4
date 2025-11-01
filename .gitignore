@@ -39,3 +39,6 @@
 
 # debug information files
 *.dwo
+
+# Ignorar la carpeta de configuración de Visual Studio
+.vs/
