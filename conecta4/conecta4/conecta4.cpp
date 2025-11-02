@@ -1,14 +1,11 @@
-// conecta4.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
-//
-
 #pragma execution_charecter_set("utf-8")
 #include <iostream>
 #include <vector>
 using namespace std;
 
 
-const int FILAS = 6;
-const int COLUMNAS = 7;
+const int FILAS = 6;   //Cantidad fija de filas
+const int COLUMNAS = 7;  //Cantidad fijas de columnas
 
 //Funcion para imprimir tablero
 
@@ -33,6 +30,33 @@ void imprimirTablero(const vector<vector<char>>& tablero) {
     }
     cout << "-----------------\n";
 }
+
+bool colocarFicha(vector<vector<char>>& tablero, int columna, char jugador) {
+    for (int f = FILAS - 1; f >= 0; f--) {
+        if (tablero[f][columna] == '.') {
+            tablero[f][columna] = jugador;
+            return true;
+        }
+    }
+    return false;
+}
+
+bool verificarGanador(const vector<vector<char>>& t, char j) {
+
+
+    for (int f = 0; f < FILAS; f++) {
+        for (int c = 0; c < COLUMNAS - 3; c++) {
+            if (t[f][c] == j && t[f][c + 1] == j &&
+                t[f][c + 2] == j && t[f][c + 3] == j) {
+                return true;
+            }
+        }
+    }
+
+
+
+
+
 
 int main() {
 
