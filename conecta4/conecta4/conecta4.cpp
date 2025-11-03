@@ -95,11 +95,55 @@ bool tableroLleno(const vector<vector<char>>& tablero) {
 }
 
 
-
-
-
-
 int main() {
+
+    vector<vector<char>> tablero(FILAS, vector<char>(COLUMNAS, '.'));
+    char jugadorActual = 'X';
+    bool juegoTerminado = false;
+
+    cout << "=== JUEGO CONECTA 4 ===\n";
+    cout << "Jugador 1: X   |   Jugador 2: O\n";
+
+    while (!juegoTerminado) {
+        imprimirTablero(tablero);
+
+        int columna;
+        cout << "\nTurno del jugador " << jugadorActual << ". Ingresa una columna (1-7): ";
+        cin >> columna;
+
+        if (cin.fail() || columna < 1 || columna > 7) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Entrada inválida. Intenta de nuevo.\n";
+            continue;
+        }
+
+        if (!colocarFicha(tablero, columna - 1, jugadorActual)) {
+            cout << "Columna llena. Elige otra.\n";
+            continue;
+        }
+
+        if (verificarGanador(tablero, jugadorActual)) {
+            imprimirTablero(tablero);
+            cout << "\nJugador " << jugadorActual << " gana\n";
+            juegoTerminado = true;
+        }
+
+        else if (tableroLleno(tablero)) {
+            imprimirTablero(tablero);
+            cout << "\nEmpate El tablero está lleno.\n";
+            juegoTerminado = true;
+        }
+        else {
+
+            jugadorActual = (jugadorActual == 'X') ? 'O' : 'X';
+        }
+    }
+
+    cout << "\nFin del juego  Gracias por jugar\n";
+    return 0;
+
+
 
 
 
