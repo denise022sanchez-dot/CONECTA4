@@ -53,6 +53,47 @@ bool verificarGanador(const vector<vector<char>>& t, char j) {
         }
     }
 
+    for (int f = 0; f < FILAS - 3; f++) {
+        for (int c = 0; c < COLUMNAS; c++) {
+            if (t[f][c] == j && t[f + 1][c] == j &&
+                t[f + 2][c] == j && t[f + 3][c] == j) {
+                return true;
+            }
+        }
+    }
+
+    for (int f = 3; f < FILAS; f++) {
+        for (int c = 0; c < COLUMNAS - 3; c++) {
+            if (t[f][c] == j && t[f - 1][c + 1] == j &&
+                t[f - 2][c + 2] == j && t[f - 3][c + 3] == j) {
+                return true;
+            }
+        }
+    }
+
+    for (int f = 0; f < FILAS - 3; f++) {
+        for (int c = 0; c < COLUMNAS - 3; c++) {
+            if (t[f][c] == j && t[f + 1][c + 1] == j &&
+                t[f + 2][c + 2] == j && t[f + 3][c + 3] == j) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+
+bool tableroLleno(const vector<vector<char>>& tablero) {
+
+    for (int c = 0; c < COLUMNAS; c++) {
+        if (tablero[0][c] == '.') {
+            return false;
+        }
+    }
+    return true;
+}
+
 
 
 
